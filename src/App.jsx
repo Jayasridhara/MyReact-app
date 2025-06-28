@@ -1,18 +1,12 @@
+import Greeting from "./components/Greeting";
 
-function Greeting()
-{
-    return(
-      <>
-      <h1>Hello World</h1>
-      <p>This is my first component</p>
-      </>
-    )
-}
+//parent Component
 function App()
 {
+  const loggedInUser="Jaya";
   return<>
-      <Greeting/>
-      <Greeting/>
+      <Greeting loggedInUser={loggedInUser}/>
+
      </>
 
   

@@ -5,7 +5,5 @@ import View from './View.jsx';
 createRoot(document.getElementById('root')).render(
 <>
 <App />
-<View/>
-
 </>
 );
