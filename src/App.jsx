@@ -1,25 +1,11 @@
-import Greeting from "./components/Greeting";
+import CompB from './components/CompB';
 
-//parent Component
-function App()
-{
-  // const loggedInUser={
-  //  name: "Jaya",
-  //  email:"jaya@gmail.com"
-  // }
-  //craete a carrer
- function childToParent(name,email)
- {
-  console.log("Function from parent to child");
+function App() {
 
-  console.log(name,email);
- }
-  return<>
-      <Greeting childToParent={childToParent}/>
-
-     </>
-
-  
- 
+  const message="React is aswome";
+  return (
+    <CompB message={message}/>
+  )
 }
-export default App;
+
+export default App
