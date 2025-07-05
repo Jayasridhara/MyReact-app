@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 
 function App() {
-  const [likes,setlikes]=useState(0);
-  const [dislikes,setdislikes]=useState(0);
+  const [reactions,setReaction]=useState({likes:0,dislikes:0})
 
+  console.log(reactions);
   const handleLike=()=>{
-      setlikes(likes+1)
+      setReaction({...reactions,likes:reactions.likes+1});
   }
   const handleDislike=()=>{
-    setdislikes(dislikes+1)
+    setReaction({...reactions,dislikes:reactions.dislikes+1});
   }
   return (
     <>
-    <button onClick={handleLike}>Like {likes}</button>
-    <button onClick={handleDislike}>Dislike {dislikes}</button>
+    <button onClick={handleLike}>Like {reactions.likes}</button>
+    <button onClick={handleDislike}>Dislike {reactions.dislikes}</button>
     
     </>
     
