@@ -1,24 +1,19 @@
-// import CompB from './components/CompB';
+import React from 'react'
 
-// function App() {
-
-//   const message="React is aswome";
-//   return (
-//     <CompB message={message}/>
-//   )
-// }
-
-// export default App
-
-import React from "react"
-class App extends React.Component{
-
-render()
-{
-   return (
-    <p>Class Component</p>
-   )
-}
+function App() {
+  let count=0;
+  const handleIncrease=()=>
+  {
+    count=count+1;
+    console.log("Count increased:",count);
+  }
+  return (
+    <>
+    <h1>Counter:{count}</h1>
+    <button onClick={handleIncrease}>Increase</button>
+    </>
+    
+  )
 }
 
 export default App
