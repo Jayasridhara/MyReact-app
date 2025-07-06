@@ -1,0 +1,13 @@
+.item
+{
+    list-style-type:none ;
+    padding: 10px;
+    margin :5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.item input[type="checkbox"]
+{
+    margin-right: 10px;
+}
