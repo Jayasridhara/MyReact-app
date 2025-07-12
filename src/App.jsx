@@ -124,13 +124,29 @@
 
 
 //useState
-import { useState } from "react";
+import { useEffect, useReducer } from "react";
+
+const reducer=(state,action)=>
+{
+  if(action.type=='LIKE')
+  {
+       return state+1
+  }
+  
+  console.log(action);
+}
+
 const App=()=>{
-const [likes,setLikes]=useState(0);
+const [likes,dispatch]=useReducer(reducer,0);
 const handleLike=()=>
 {
-  setLikes(likes+1);
+  dispatch({type:'LIKE'});
 }
+
+useEffect(()=>
+{
+  console.log(`you have ${likes} likes`)
+},[likes])
   return (
     <div>
       <h1>Likes:{likes}</h1>
