@@ -1,143 +1,30 @@
-// import React, { useEffect, useState } from 'react'
-// import Note from './components/Note';
+import { useEffect, useState } from "react";
 
+const App = () => {
 
+  const [renderCount, setRenderCount] = useState(0);
+  const [data, setData] = useState(0);
 
-// function App() {
-//   const [notes,setNote]=useState([]);
-  
-//   useEffect(()=>{
-//     fetch(`https://68457069fc51878754db59b6.mockapi.io/notes`)
-//   .then(response=>response.json())
-//   .then(data=>setNote(data))
+  // 1. When the component is mounted and runs only once.
+  // It will not run again on re-renders.
+  useEffect(() => {
+    console.log("Component mounted");
+  }, []);
 
-//   },[])
+  // 2. When the component is mounted and on every update or re-render of the component.
+  useEffect(() => {
+    console.log('Component updated');
+  });
 
-//   console.log(notes);
-//   return(
-//     <div>
-//       <h1>NoteApp</h1>
-//       <ul>
-//         {
-//           notes.map((note,index)=>{
-//            return <Note note={note} key={note.id}/>
-//           })
-           
-//         }
-       
-//      </ul>
+  // 3. When the component is mounted and on every update or re-render of the component, but only if the dependency changes.
+  useEffect(() => {
+    console.log(`Render count changed: ${renderCount}`);
+  }, [data]);
 
-//     </div>
-//   )
-// }
-
-// export default App
-
-// import React, { useEffect, useState } from 'react'
-
-// //uncontrolled component in react ? beacause we are not using state to manage the form input
-// //using use state is controlled component
-// function App() {
-
-//   const [email,setEmail]=useState('');
-//   const [password,setPassword]=useState('');
-//   const handleLogin=(event)=>
-//   {
-//     event.preventDefault();
-//    console.log(email,password)
-//   }
-//   useEffect(()=>
-//   {
-//     console.log(email,password)
-//   },[email])
-//   return (
-//     <div>
-//       <h1>login</h1>
-//       <form onSubmit={handleLogin}>
-//         <div>
-//           <input type='text'name="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='email..'></input>
-
-//         </div>
-//         <br/>
-//         <div>
-//           <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='password..' name="password"></input>
-//         </div>
-//         <br/>
-//         <button>Login</button>
-//       </form>
-
-//     </div>
-//   )
-// }
-
-// export default App
-
-
-
-//import React, { useEffect, useRef, useState } from 'react'
-
-//uncontrolled component in react ? beacause we are not using state to manage the form input
-//using use state is controlled component
-// function App() {
-
-//   const email=useRef(null);
-//   const password=useRef(null);
-//   const handleLogin=(event)=>
-//   {
-//     event.preventDefault();
-
-//     //  email=document.getElementById('email').value;
-//     //  password=document.getElementById('password').value;
-
-//    console.log(email.current.className,password.current.className)
-//   }
-//   useEffect(()=>
-//   {
-//     console.log(email,password)
-//   },[email])
-//   return (
-//     <div>
-//       <h1>login</h1>
-//       <form onSubmit={handleLogin}>
-//         <div>
-//           <input type='text'ref={email} name='email' id='email' className='e' placeholder='email..'></input>
-
-//         </div>
-//         <br/>
-//         <div>
-//           <input type='password'ref={password} name='password' id='password' className='p' ></input>
-//         </div>
-//         <br/>
-//         <button>Login</button>
-//       </form>
-
-//     </div>
-//   )
-// }
-
-// export default App
-
-
-//ref
-
-// 
-
-
-//useState
-import { useEffect, useReducer } from "react";
-import { initialState,reducer } from "./reducers/reactionReducer";
-
-const App=()=>{
-const [likes,dispatch]=useReducer(reducer,initialState);
-
-useEffect(()=>
-{
-  console.log(`you have ${likes} likes`)
-},[likes])
   return (
     <div>
-      <h1>Likes:{likes}</h1>
-      <button onClick={()=>dispatch({type:"LIKE"})}>Like</button>
+      <button onClick={() => setRenderCount(renderCount + 1)}>Re-Render Component</button>
+      &nbsp; <button onClick={() => setData(data + 1)}>Change Data</button>
     </div>
   )
 }
