@@ -1,6 +1,8 @@
 // import React, { useEffect, useState } from 'react'
 // import Note from './components/Note';
 
+
+
 // function App() {
 //   const [notes,setNote]=useState([]);
   
@@ -31,41 +33,110 @@
 
 // export default App
 
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
+
+// //uncontrolled component in react ? beacause we are not using state to manage the form input
+// //using use state is controlled component
+// function App() {
+
+//   const [email,setEmail]=useState('');
+//   const [password,setPassword]=useState('');
+//   const handleLogin=(event)=>
+//   {
+//     event.preventDefault();
+//    console.log(email,password)
+//   }
+//   useEffect(()=>
+//   {
+//     console.log(email,password)
+//   },[email])
+//   return (
+//     <div>
+//       <h1>login</h1>
+//       <form onSubmit={handleLogin}>
+//         <div>
+//           <input type='text'name="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='email..'></input>
+
+//         </div>
+//         <br/>
+//         <div>
+//           <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='password..' name="password"></input>
+//         </div>
+//         <br/>
+//         <button>Login</button>
+//       </form>
+
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+
+//import React, { useEffect, useRef, useState } from 'react'
 
 //uncontrolled component in react ? beacause we are not using state to manage the form input
 //using use state is controlled component
-function App() {
+// function App() {
 
-  const [email,setEmail]=useState('');
-  const [password,setPassword]=useState('');
-  const handleLogin=(event)=>
-  {
-    event.preventDefault();
-   console.log(email,password)
-  }
-  useEffect(()=>
-  {
-    console.log(email,password)
-  },[email])
+//   const email=useRef(null);
+//   const password=useRef(null);
+//   const handleLogin=(event)=>
+//   {
+//     event.preventDefault();
+
+//     //  email=document.getElementById('email').value;
+//     //  password=document.getElementById('password').value;
+
+//    console.log(email.current.className,password.current.className)
+//   }
+//   useEffect(()=>
+//   {
+//     console.log(email,password)
+//   },[email])
+//   return (
+//     <div>
+//       <h1>login</h1>
+//       <form onSubmit={handleLogin}>
+//         <div>
+//           <input type='text'ref={email} name='email' id='email' className='e' placeholder='email..'></input>
+
+//         </div>
+//         <br/>
+//         <div>
+//           <input type='password'ref={password} name='password' id='password' className='p' ></input>
+//         </div>
+//         <br/>
+//         <button>Login</button>
+//       </form>
+
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+//ref
+
+// 
+
+
+//useState
+import { useState } from "react";
+const App=()=>{
+const [likes,setLikes]=useState(0);
+const handleLike=()=>
+{
+  setLikes(likes+1);
+}
   return (
     <div>
-      <h1>login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <input type='text'name="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='email..'></input>
-
-        </div>
-        <br/>
-        <div>
-          <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='password..' name="password"></input>
-        </div>
-        <br/>
-        <button>Login</button>
-      </form>
-
+      <h1>Likes:{likes}</h1>
+      <button onClick={handleLike}>Like</button>
     </div>
   )
 }
 
-export default App
+export default App;
