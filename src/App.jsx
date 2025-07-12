@@ -125,23 +125,10 @@
 
 //useState
 import { useEffect, useReducer } from "react";
-
-const reducer=(state,action)=>
-{
-  if(action.type=='LIKE')
-  {
-       return state+1
-  }
-  
-  console.log(action);
-}
+import { initialState,reducer } from "./reducers/reactionReducer";
 
 const App=()=>{
-const [likes,dispatch]=useReducer(reducer,0);
-const handleLike=()=>
-{
-  dispatch({type:'LIKE'});
-}
+const [likes,dispatch]=useReducer(reducer,initialState);
 
 useEffect(()=>
 {
@@ -150,7 +137,7 @@ useEffect(()=>
   return (
     <div>
       <h1>Likes:{likes}</h1>
-      <button onClick={handleLike}>Like</button>
+      <button onClick={()=>dispatch({type:"LIKE"})}>Like</button>
     </div>
   )
 }
