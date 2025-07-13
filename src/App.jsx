@@ -1,17 +1,20 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
+import Home from "./pages/Home";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 const routes=[
 {
     path:'/',
-    element:<h1>Hello World</h1>
+    element:<Home/>
 },
 {
-    path:'/about',
-    element:<h1>About Us</h1>
+    path:'/login',
+    element:<Login/>
 },
 {
-    path:'/contactus',
-    element:<h1>Contact US</h1>
+    path:'/register',
+    element:<Register/>
 }
 ];
 //create a router object
