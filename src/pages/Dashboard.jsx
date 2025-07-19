@@ -1,44 +1,43 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useLoaderData, useNavigate } from 'react-router';
+import React, { useEffect, useState } from 'react'
+import { Link, Outlet, useNavigate } from 'react-router';
 
-const Dashboard = () => {
-
-    const navigate = useNavigate();
-   const todos = useLoaderData();
-
-    
-
-    const handleLogout = () => {
-        alert('User Logged Out!');
-
-        setTimeout(() => {
-            navigate('/login');
-        }, 500);
+function Dashboard() {
+    const navigate=useNavigate();
+    const [todos,setTodos]=useState([]);
+    const handleLogout=(event)=>{
+        event.preventDefault();
+        alert("User Logged Out")
+       setTimeout(()=>{
+        navigate('/login');
+       },500) 
     }
-   console.log(todos);
-    return (
-        <div>
-            <h1>Dashboard</h1>
-            <p>User logged in! <button onClick={handleLogout}>logout</button></p>
-            {
-                todos.length > 0 ? (
-                    <ul>
-                        {
-                            todos.map(todo => (
-                                <li key={todo.id}>
-                                    <Link to={`/todo/${todo.id}`}>
-                                        {todo.content}
-                                    </Link>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                ) : (
-                    <p>No todos found.</p>
-                )
-            }
-        </div>
-    )
+    useEffect(()=>{
+        fetch(`https://687b37adb4bc7cfbda8502db.mockapi.io/todos`)
+        .then(response=>response.json())
+        .then(data=>setTodos(data));
+    },[]);
+   
+  return (
+    <div>
+        <h2>Dashboard</h2>
+        <button onClick={handleLogout}>Logout</button>
+
+        {
+            todos.length>0?(
+                <ul>
+                   {
+                     todos.map(todo=>(
+                         <li key={todo.id}><Link to={`/dashboard/todo?id=${todo.id}`}>{todo.content}</Link></li>
+                     ))
+                   }
+                </ul>
+            ):(
+                <p>No todos found</p>
+            )
+        }
+        <Outlet/>
+    </div>
+  )
 }
 
 export default Dashboard

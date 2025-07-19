@@ -1,29 +1,39 @@
-import { useEffect, useState } from "react";
-import { useLoaderData, useLocation, useNavigate, useParams } from "react-router";
+import React, { useEffect, useState } from 'react'
+import { useParams, useSearchParams } from 'react-router'
 
-const Todo = () => {
+function Todo() {
+    const [params]=new useSearchParams();
+    console.log(params);
+   const id=params.get('id');
+   const [todo, setTodo] = useState(null);
+   useEffect(()=>{
+    if (!id) return;
+    setTodo(null);
+        fetch(`https://687b37adb4bc7cfbda8502db.mockapi.io/todos/${id}`)
+        .then(response=>response.json())
+        .then(setTodo)
+        .catch(err => {
+        console.error('Error fetching todo', err);
+       
+      });
 
-    const navigate = useNavigate();
-    const todo=useLoaderData();
+   },[id])
 
-   
+    if (todo === null) {
+    return <p>Loading...</p>;
+  }
+ 
 
-    const handleBack = () => {
-        navigate(-1); // Navigate back to the previous page
-    }
 
-    return (
-        <div>
-            <h1>Todo Details</h1>
-            <p><strong>ID:</strong> {todo.id}</p>
-            <p><strong>Content:</strong> {todo.content}</p>
-            <p><strong>Status:</strong> {todo.isCompleted ? "Completed" : "Incomplete"}</p>
-            <p><strong>Created At:</strong> {new Date(todo.createdAt).toLocaleDateString()}</p>
-            <div>
-                <button onClick={handleBack}>Back</button>
-            </div>
-        </div>
-    )
+  return (
+    <div>
+        <p><strong>ID:</strong>{todo.id}</p>
+        <p><strong>Content:</strong>{todo.content}</p>
+        <p><strong>IsComplete</strong>{todo.isCompleted}</p>
+        <p>{todo.createdAt}</p>
+        
+    </div>
+  )
 }
 
-export default Todo;
+export default Todo

@@ -3,31 +3,32 @@ import { Link, useNavigate } from 'react-router'
 
 function Register() {
     const navigate=useNavigate();
-    const handleregister=(event)=>
-    {
+    const handleRegister=(event)=>{
         event.preventDefault();
-        alert("user Registed");
-        navigate('/login')
+        alert('User Registered!');
+       setTimeout(()=>{
+        navigate('/login');
+       },500) 
     }
   return (
-    <div><form action="" onSubmit={handleregister}>
-        <div >
-<h1>Register</h1>
-          <input type="text" name="email" id="" />
-
+    <div>
+        <form action="" onSubmit={handleRegister}>
+            <div>
+                <input type="email" placeholder='email..'/>
             </div>
-            <div className="">
-                <input type="password" name="password" id="" />
+            <br />
+            <div>
+                <input type="password" placeholder='password..' />
             </div>
-            <button type='submit'>Register</button>
-            <div className="">
-
-                Already  have an accout
-                <Link to="/login">Login</Link>
-            </div>
-
-
-        </form></div>
+            <br />
+            <div><button type='submit'>Register</button></div>
+            <p>
+                Already have an account?<Link to={'/login'}>Login</Link>
+            </p>
+        </form>
+        
+        
+    </div>
   )
 }
 

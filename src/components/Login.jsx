@@ -2,34 +2,33 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router'
 
 function Login() {
-      const navigate=useNavigate();
-    const handlelogin=(event)=>
-    {
+
+    const navigate=useNavigate();
+    const handleLogin=(event)=>{
         event.preventDefault();
-        alert("user logged in ");
-        setTimeout(() => {
-            // Redirect to home page after login
-            navigate('/dashboard');
-        }, 500);
+        alert('User Logged In!');
+       setTimeout(()=>{
+        navigate('/dashboard');
+       },500) 
     }
+
   return (
     <div>
-        <h1>Login</h1>
-        <form action="" onSubmit={handlelogin}>
-            <div >
-
-                <input type="text" name="email" id="" />
-
+        <form action="" onSubmit={handleLogin}>
+            <div>
+                <input type="email" placeholder='email..'/>
             </div>
-            <div className="">
-                <input type="password" name="password" id="" />
+            <br />
+            <div>
+                <input type="password" placeholder='password..' />
             </div>
-             <button type='submit'>Login</button>
-            <div className="">
-                Don't have an account?
-                <Link to={"/register"}>Register</Link>
-            </div>
+            <br />
+            <div><button type='submit'>Login</button></div>
+            <p>
+                Don't have an account?<Link to={'/register'}>Register</Link>
+            </p>
         </form>
+
     </div>
   )
 }
