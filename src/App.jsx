@@ -2,20 +2,47 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "./pages/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import HomeWrapper from "./wrappers/HomeWrapper";
+import Dashboard from "./pages/Dashboard";
+import Todo from "./components/Todo";
+import todosLoader from "./Loader/unit/todosLoader";
+import todosLoad from "./Loader/unit/todoLoad";
+
+
 
 const routes=[
 {
     path:'/',
-    element:<Home/>
+    element:<HomeWrapper/>,
+    children:[
+      {
+          path:'',
+          element:<Home/>
+      },
+      {
+          path:'login',
+          element:<Login/>
+      },
+      {
+          path:'register',
+          element:<Register/>
+      }
+    ]
 },
 {
-    path:'/login',
-    element:<Login/>
+          path:'dashboard',
+          element:<Dashboard/>,
+          loader:todosLoader,
+          hydrateFallbackElement:<p>Loading Dashboard..</p>
 },
 {
-    path:'/register',
-    element:<Register/>
+ 
+              path:"todo/:id",
+              element:<Todo/> ,
+               loader:todosLoad,
+                hydrateFallbackElement:<p>Loading TodoApp..</p>       
 }
+
 ];
 //create a router object
 const router=createBrowserRouter(routes,{
