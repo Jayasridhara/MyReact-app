@@ -1,37 +1,66 @@
-import instance from "../instance/instance";
+import instance from "../instance/instance"
 
-
-const todoServices = {
-    getTodos: async () => {
-        try {
-            const response = await instance.get(`/todos`);
+const todoServices={
+    getTodos:async()=>
+    {
+        try{
+            const response=await instance.get(`/todos`);
             return response.data;
-        } catch (error) {
+        }
+        catch(error){
             return [];
         }
     },
-    getTodoById: async (id) => {
-        try {
-            const response = await instance.get(`/todos/${id}`);
+     getTodoById:async(id)=>
+    {
+        try{
+              const response=await instance.get(`/todos/${id}`)
             return response.data;
-        } catch (error) {
-            return {};
+        }
+        catch(error){
+            return [];
         }
     },
-    createTodo: async (todo) => {
-
-    },
-    updateTodo: async (id, todo) => {
-
-    },
-    deleteTodo: async (id) => {
+   
+     createTodo:async(todo)=>
+    {
         try {
-            const response = await instance.delete(`/todos/${id}`)
+            const newTodo = {
+                content: todo,
+                isCompleted: false
+            }
+            const response = await instance.post(`/todos`, newTodo);
             return response.data;
         } catch (error) {
-            console.error("Error deleting todo:", error);
+            console.error("Error creating todo:", error);
         }
+    },
+    
+     updateTodo:async(id, todo)=>
+    {
+         try {
+            const updatedTodo = {
+                content: todo.content,
+                isCompleted: !todo.isCompleted
+            }
+            const response = await instance.put(`/todos/${id}`, updatedTodo);
+            return response.data;
+        } catch (error) {
+            console.error("Error updating todo:", error);
+        }
+    },
+
+     deleteTodos:async(id)=>
+    {
+        try
+        {
+          const response=  await instance.delete(`/todos/${id}`)
+            return response.data;
+        }
+        catch(error){
+               console.error("Error deleting todo",error);
+            }
     }
-}
+ }
 
 export default todoServices;

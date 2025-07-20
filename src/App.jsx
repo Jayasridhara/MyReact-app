@@ -5,6 +5,9 @@ import Register from "./components/Register";
 import HomeWrapper from "./wrappers/HomeWrapper";
 import Dashboard from "./pages/Dashboard";
 import Todo from "./components/Todo";
+import todosLoader from "./Loader/unit/todosLoader";
+import todoLoader from "./Loader/unit/todoLoader";
+
 
 const  router=createBrowserRouter([
   {
@@ -28,14 +31,17 @@ const  router=createBrowserRouter([
   {
     path:"dashboard",
     element:<Dashboard/>,
-    children:[
-      {
-        path:'todo',
-        element:<Todo/>
-      }
-    ]
-
+    loader:todosLoader,
+    hydrateFallbackElement:<p>Loading Todos..</p>
+   
+  },
+   {
+        path:'todo/:id',
+        element:<Todo/>,
+        loader:todoLoader,
+         hydrateFallbackElement:<p>Loading Todos content..</p>
   }
+
 ]);
 
 const App=()=>{
