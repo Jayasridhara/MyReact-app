@@ -60,7 +60,21 @@ const todoServices={
         catch(error){
                console.error("Error deleting todo",error);
             }
+    },
+     editAndUpdateTodo: async (id, todo) => {
+        try {
+            const updatedTodo = {
+                content: todo.content,
+            }
+
+            const response = await instance.put(`/todos/${id}`, updatedTodo);
+
+            return response.data;
+        } catch (error) {
+            console.error("Error editing and updating todo:", error);
+        }
     }
+
  }
 
 export default todoServices;
